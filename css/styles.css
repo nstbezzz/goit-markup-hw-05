@@ -63,6 +63,7 @@ img {
   justify-content: space-around;
 }
 
+
 /* logo */
 
 .logo {
@@ -91,7 +92,9 @@ img {
 .site-nav {
   display: flex;
   margin-left: 76px;
+  
 }
+
 
 .site-nav .item + .item {
   margin-left: 40px;
@@ -110,7 +113,10 @@ img {
   letter-spacing: 0.02em;
   text-decoration: none;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  position: relative;
 }
+
 
 .site-nav .link:hover,
 .site-nav .link:focus {
@@ -120,6 +126,29 @@ img {
 .site-nav .link:active {
   color: var(--dark-accent-color);
 }
+
+.item {position: relative;}
+
+
+.site-nav .link.current::after {content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: var(--dark-accent-color);
+
+width: 100%;
+height: 4px;
+background-color: var(--dark-accent-color);
+border-radius: 2px;
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.site-nav .link.current:hover, 
+.site-nav .link.current:focus
+{color: var(--dark-accent-color);}
+
+
 
 /* contacts */
 .mail-tel {
@@ -239,7 +268,7 @@ button:focus {
 }
 
 .button:active {
-  background: var(--dark-accent-color);
+  background-color: var(--dark-accent-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
 }
@@ -408,6 +437,7 @@ button:focus {
 .customers-item {
   width: 168px;
   height: 88px;
+  
 }
 
 .customers-link {
@@ -419,8 +449,11 @@ button:focus {
   height: 100%;
   border: 1px solid #8e8f99;
   border-radius: 4px;
+
   transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .customers-link:hover,
 .customers-link:focus {
   border: 1px solid var(--dark-accent-color);
@@ -656,7 +689,6 @@ button:focus {
   width: 100%;
   height: 100%;
   color: var(--secondary-background-color);
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -671,3 +703,68 @@ button:focus {
 .item-cards:focus .overlay {
   transform: translate(0, 0);
 }
+
+/* modal */
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
+.backdrop {position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+  .modal {
+position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+
+width: 408px;
+height: 576px;
+
+
+background-color: #FCFCFC;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+border-radius: 4px;
+}
+
+.modal-btn {position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 24px;
+height: 24px;
+border-radius: 50%;
+background-color: #E7E9FC;
+border: 1px solid rgba(0, 0, 0, 0.1);
+cursor: pointer;
+
+transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.modal-btn:hover,
+.modal-btn:focus {background-color: var(--dark-accent-color);}
+
+.modal-btn-icon {fill: #000;
+transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);}
+
+.modal-btn:hover .modal-btn-icon,
+.modal-btn:focus .modal-btn-icon {fill: var(--primary-white-color);}
